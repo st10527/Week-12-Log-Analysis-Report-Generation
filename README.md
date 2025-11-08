@@ -1,57 +1,54 @@
-# Week 11 – Advanced Configuration & Access Control
+# Week 12 – Log Analysis & Report Generation
 
 ## Objective
 
-This week, you’ll implement **basic authentication** and **configuration management**
-to make your monitoring dashboard behave like a real system administration tool.
+This week, you will analyze your monitored data stored in `log.db` and generate a simple **report** summarizing system performance and alerts.
+
+---
+
+## Data Source
+
+Use the same `log.db` created in previous weeks (Week 7–11).  
+If it is missing, re-run your logging scripts to generate new entries.
 
 ---
 
 ## Tasks
 
-1. Implement a simple login form using Streamlit
-   - Username: `admin`
-   - Password: `admin123`
-2. Store login state using `st.session_state`
-3. Add a **Configuration Panel** with sliders to adjust thresholds:
-   - CPU Threshold
-   - Memory Threshold
-   - Disk Threshold
-4. Add a **Logout** option that resets the session
-5. Keep the Dashboard page displaying data from `log.db`
+1. Load data from the `system_log` table in `log.db`
+2. Display key statistics using Streamlit:
+   - Average CPU / Memory / Disk usage
+   - Number of alerts (CPU > 80%, MEM > 85%, DISK > 90%)
+3. Create line charts for system resource trends
+4. Add a **Download Report** button to export the summary as CSV
 
 ---
 
 ## Example Output
 
-- Login page with username/password form  
-- Dashboard showing last 10 entries and charts  
-- Configuration panel with adjustable sliders  
-- Logout resets the interface  
+| Metric | Value |
+|--------|--------|
+| Average CPU | 27.54% |
+| Average Memory | 42.10% |
+| Average Disk | 59.23% |
+| CPU Alerts | 3 |
+| Memory Alerts | 1 |
+| Disk Alerts | 0 |
 
 ---
 
-## Run the Dashboard
-
-```bash
-streamlit run app.py
-```
-
 ## Submission Checklist
 
- Login and Logout functions implemented
+- [ ] `app.py` loads data and calculates statistics  
+- [ ] Charts and metrics displayed correctly  
+- [ ] CSV report can be downloaded  
+- [ ] Screenshot showing your report page  
+- [ ] Code pushed to GitHub
 
- Threshold sliders visible under Configuration
-
- Dashboard connected to log.db
-
- Screenshot showing all three pages (Login, Dashboard, Configuration)
 ---
 
 ## Bonus (Optional)
 
-Store user credentials in a database instead of hardcoding
-
-Apply new thresholds to filter alert data dynamically
-
-Add role-based access (admin vs user)
+- Add PDF export using `fpdf` or `reportlab`
+- Add alert history table for the last 24 hours
+- Display average Ping time as an additional metric
